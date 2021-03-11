@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+body {
+    background-color: #dedddc;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#container {
+    width: 700px;
+    height: 500px;
+    border-radius: 5px;
+    margin: 50px auto;
+    position: relative;
+    border-radius: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#img {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 2px solid white;
+    transition: 0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#img:hover {
+    border: 2px solid black;
+    transition: 0.3s;
+    -webkit-box-shadow: 0 0 4px 2px #454545;
+    -moz-box-shadow: 0 0 4px 2px #454545;
+    box-shadow: 0 0 4px 2px #454545;
 }
 
-.App-link {
-  color: #61dafb;
+#buttons {
+    position: absolute;
+    top: 488px;
+    left: 498px;
+    margin: 0 1px 0 0;
+    border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+    color: white;
+    outline: none;
+    border: none;
+    opacity: 0.7;
+    color: black;
+    width: 100px;
+    height: 45px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.btn1 {
+    margin: 0 1px 0 0;
+}
+
+.btn:hover {
+    cursor: pointer;
+    color: white;
+    opacity: 0.7;
+    transition: 0.2s;
+    background-color: #8c8c8c;
+}
+
+#nav{
+    background-color: white;
+    opacity: 0.5;
+    display: flex;
+    position: relative;
+    top: 36px;
+    margin: 0 0 0 2px;
+    border-radius: 5px;
+    padding: 2px 1px;
+    width: 390px;
+    color: black;
+    z-index: 99;
+    height: 30px;
+    font-weight: bold;
+}
+
+#nav > div {
+    padding: 5px 0 0 0;
+}
+
+#nav > * {
+    margin: 0 0 0 10px;
+}
+
+#txt {
+    border-radius: 10px;
+    text-align: center;
+    width: 40px;
+    background: white;
+    opacity: 0.7;
+    font-weight: bold;
+    border: none;
+}
+
+#txt:active {
+    border: none;
+}
+
+#txt:visited {
+    border: none;
+}
+
+#txt:link {
+    border: none;
+}
+
+#nav > button {
+    transition: 0.2s;
+    color: black;
+    border: none;
+    font-weight: bold;
+    background: none;
+    border-radius: 5px;
+}
+
+#nav > button:hover {
+    transition: 0.2s;
+    background-color: black;
+    color: white;
 }
