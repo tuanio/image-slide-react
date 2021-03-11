@@ -1,7 +1,6 @@
 import './App.css'; 
-/* từ đây là phần code */ 
 import React from 'react'; 
-import { Fetching } from './helper.js';
+import { Fetching } from './helper';
 
 class Image extends React.Component { 
     constructor(props) { 
@@ -12,22 +11,16 @@ class Image extends React.Component {
             width: 700,
             height: 500
         };
-
-        let url = `https://picsum.photos/id/${this.state.id}/${this.state.width}/${this.state.height}`;
-        (async () => {
-            let res = await fetch(url);
-            let blob = await res.blob();
-            console.log(blob);
-            let krl = URL.createObjectURL(blob);
-            this.setState(state => ({
-                image: krl
-            }))
-        })();
         this.handleClickNext = this.handleClickNext.bind(this); 
         this.handleClickPrev = this.handleClickPrev.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleGoTo = this.handleGoTo.bind(this);
     } 
+
+    async componentDidMount() {
+        let data = await Fetching(1);
+        this.setState(state => ({ image: data }));
+    }
 
     handleChange(e) {
         this.setState(state => ({
@@ -35,67 +28,24 @@ class Image extends React.Component {
         }));
     }
 
-    handleGoTo(e) {
-        let url = `https://picsum.photos/id/${this.state.id}/${this.state.width}/${this.state.height}`;
-        (async () => {
-            let res = await fetch(url);
-            let blob = await res.blob();
-            console.log(blob);
-            let krl = URL.createObjectURL(blob);
-            this.setState(state => ({
-                image: krl
-            }))
-        })();
-
+    async handleGoTo(e) {
+        let data = await Fetching(this.state.id);
+        this.setState(state => ({ image: data }));
     }
 
-    handleClickPrev(e) {
+    async handleClickPrev(e) {
         if (this.state.id === 1) {
             return; 
         }
-        this.setState(state => ({ 
-            id: this.state.id - 1 
-        })) 
-        /* 
-         * -> text
-         * -> json 
-         * -> blob 
-         *
-         * */
-
-        let url = `https://picsum.photos/id/${this.state.id}/${this.state.width}/${this.state.height}`;
-        (async () => {
-            let res = await fetch(url);
-            let blob = await res.blob();
-            console.log(blob);
-            let krl = URL.createObjectURL(blob);
-            this.setState(state => ({
-                image: krl
-            }))
-        })();
-
+        this.setState(state => ({ id: state.id - 1 }));
+        let data = await Fetching(this.state.id);
+        this.setState(state => ({ image: data }));
     }
 
-    handleClickNext(e) {
-        this.setState(state => ({
-            id: this.state.id + 1
-        }))
-        /*
-         * -> text
-         * -> json 
-         * -> blob
-         * */
-
-        let url = `https://picsum.photos/id/${this.state.id}/${this.state.width}/${this.state.height}`;
-        (async () => {
-            let res = await fetch(url);
-            let blob = await res.blob();
-            console.log(blob);
-            let krl = URL.createObjectURL(blob);
-            this.setState(state => ({
-                image: krl
-            }))
-        })();
+    async handleClickNext(e) {
+        this.setState(state => ({ id: state.id + 1 }));
+        let data = await Fetching(this.state.id);
+        this.setState(state => ({ image: data }));
     }
 
     render() {
@@ -106,7 +56,7 @@ class Image extends React.Component {
                     <input type="text" id="txt" value={this.state.id} onChange={this.handleChange}/>
                     <button onClick={this.handleGoTo}>Get Image</button>
                 </div>
-                <img alt="this is a image from lorem picsum" id="img" src={this.state.image} />
+                <img alt="This is from lorem picsum" id="img" src={this.state.image} />
                 <div id="buttons">
                     <button className="btn btn1" onClick={this.handleClickPrev}>Previous</button>
                     <button className="btn btn2" onClick={this.handleClickNext}>Next</button>
@@ -115,7 +65,6 @@ class Image extends React.Component {
         );
     }
 }
-/* đến đây nè */
 
 function App() {
     return (
